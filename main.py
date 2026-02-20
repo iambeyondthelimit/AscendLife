@@ -7,18 +7,12 @@ from rich.table import Table
 from rich.panel import Panel
 from rich.progress import Progress
 
-# -------------------------
-# CONFIG
-# -------------------------
 console = Console()
 DB_PATH = "db/player_progress.db"
 
 if not os.path.exists("db"):
     os.makedirs("db")
 
-# -------------------------
-# DATABASE INIT
-# -------------------------
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -105,9 +99,6 @@ def init_db():
 
 init_db()
 
-# -------------------------
-# UTILITIES
-# -------------------------
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
@@ -127,9 +118,6 @@ def loading_animation(message="Loading", seconds=2):
             time.sleep(1)
             progress.update(task, advance=1)
 
-# -------------------------
-# USER PROFILE
-# -------------------------
 def load_or_register_profile():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -155,9 +143,6 @@ def load_or_register_profile():
         pause()
         return profile
 
-# -------------------------
-# INTRO
-# -------------------------
 def game_intro(profile):
     clear()
     Entry()
@@ -211,9 +196,6 @@ def Start():
         time.sleep (0.01)
         print("\b \b", end="", flush = True)
         
-# -------------------------
-# MODULES
-# -------------------------
 def nutrition_module():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -379,7 +361,7 @@ def about_me_module(profile):
 def side_quests_module():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    # randomly pop challenge
+    
     clear()
     cursor.execute("SELECT * FROM side_quests")
     challenges = cursor.fetchall()
@@ -395,9 +377,6 @@ def side_quests_module():
     conn.close()
     pause()
 
-# -------------------------
-# DASHBOARD
-# -------------------------
 def dashboard(profile):
     while True:
         clear()
@@ -432,9 +411,6 @@ def dashboard(profile):
             console.print("[red]Invalid choice[/red]")
             time.sleep(1)
 
-# -------------------------
-# RUN
-# -------------------------
 if __name__=="__main__":
     profile = load_or_register_profile()
     game_intro(profile)
