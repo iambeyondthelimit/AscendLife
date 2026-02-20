@@ -147,8 +147,8 @@ def game_intro(profile):
     clear()
     Entry()
     Start()
-    slow_print("Initializing Life OS...", 0.05)
-    loading_animation("Booting your path", 3)
+    slow_print("Initializing AscendLife ...", 0.05)
+    loading_animation("Booting your path operating system", 3)
     clear()
     console.print(Panel.fit(f"[bold red]WELCOME, {profile[1].upper()}, USELESS PLAYER[/bold red]", border_style="orange1"))
     slow_print(
